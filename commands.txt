@@ -1,0 +1,2 @@
+docker run -d --name gittea -e TIMEZONE="Russia/Samara" -v /opt/gitea:/data -p 3000:3000 -p 2222:22 --restart unleass-stopped gjchen/gitea
+docker run --name nginx -v /some/content:/usr/share/nginx/html:ro -d nginx -p 8080:80

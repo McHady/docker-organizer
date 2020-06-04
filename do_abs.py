@@ -6,6 +6,8 @@ class Worker(ABC):
     def exec(self, cmd, exec_name):
         pass
 
+class ResourceMananager(ABC):
+
     @abstractclassmethod
     def create_resource(self, name, **kwargs):
         pass

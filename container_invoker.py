@@ -1,8 +1,8 @@
 import docker
-from do_abs import Worker
+from do_abs import Worker, ResourceMananager
 from docker.models.containers import Container
 
-class DockerWorker(Worker):
+class DockerWorker(Worker, ResourceMananager):
 
     __client : docker.DockerClient = None
 
@@ -27,9 +27,9 @@ class DockerWorker(Worker):
 
 class ContainerInvoker:
     
-    __worker : Worker = None
+    __worker : ResourceMananager = None
 
-    def __init__(self, worker: Worker):
+    def __init__(self, worker: ResourceMananager):
         self.__worker = worker
 
     def run_container(self, name, image, port_binding, network = None, restart="unleass-stopped", **kwargs):
@@ -54,7 +54,4 @@ class ContainerInvoker:
     
     def remove_container(self, name):
         self.__worker.remove_resource(name)
-
-    def cmd_container(self, name, cmd):
-        self.__worker.exec(cmd, name)
 

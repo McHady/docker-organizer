@@ -9,7 +9,7 @@ class ProxyBinder:
     __bind_probe = "#@bind@"
     __bind_probe_regex = re.compile(__bind_probe, re.IGNORECASE)
     __bind_regex = "#@{service}@[ \w\n]*#@end_{service}@\n"
-    __bind_template = "#@{location}\n\t@location /{location}/ {\n\t\t proxy_pass {service_uri};\n\t\tproxy_redirect off;\n\t}#@end_{location}@\n%(__bind_probe)"
+    __bind_template = "#@{location}@\n\tlocation /{location}/ {\n\t\t proxy_pass {service_uri};\n\t\tproxy_redirect off;\n\t}#@end_{location}@\n%(__bind_probe)"
 
     def __set_config(self, config_text):
         self.__current_config = config_text
